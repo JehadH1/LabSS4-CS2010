@@ -20,6 +20,10 @@ static void playGame() {
 	int playPoint = 0;
 	
 	bool playing = true;
+
+	if (credits <= 0) {
+		credits = 100;
+	}
 	cout << "You have " << credits << " credits ";
 	cout << "How much do you wager ";
 
@@ -93,9 +97,7 @@ int main() {
 	bool done = false;
 	while (!done) {
 		playGame();
-		if (credits == 0) {
-			break;
-		}
+		
 		cout << " Play again (y/n) ? ";
 		cin >> ans;
 		if (ans == 'n' || ans == 'N') done = true;
