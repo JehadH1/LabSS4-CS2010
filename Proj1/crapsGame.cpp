@@ -33,15 +33,15 @@ static void playGame() {
 
 	while (playing) {
 		cout << endl;
-		int Throw = die();
+		int roll = die();
 
-		if ((Throw == 7) || (Throw == 11)) {
+		if ((roll == 7) || (roll == 11)) {
 			credits += wager;
 			
 			cout << "\nplayer wins \n\nyou won " << wager << " Your new balance is " << credits << " credits";
 			playing = false;
 		}
-		else if ((Throw == 2) || (Throw == 3) || (Throw == 12)) {
+		else if ((roll == 2) || (roll == 3) || (roll == 12)) {
 			credits -= wager;
 			
 			if (credits == 0) {
@@ -54,13 +54,13 @@ static void playGame() {
 			playing = false;
 		}
 		else {
-			playPoint = Throw;
+			playPoint = roll;
 			cout << "point is " << playPoint << "\n";
-			int newThrow = 0;
+			int newRoll = 0;
 			while (playing) {
-				newThrow = die();
+				newRoll = die();
 
-				if (newThrow == 7) {
+				if (newRoll == 7) {
 					credits -= wager;
 					
 					if (credits == 0) {
@@ -72,7 +72,7 @@ static void playGame() {
 					}
 					playing = false;
 				}
-				else if (newThrow == playPoint) {
+				else if (newRoll == playPoint) {
 					credits += wager;
 					
 					cout << "player wins\n\nyou won " << wager << " Your new balance is " << credits << " credits";
