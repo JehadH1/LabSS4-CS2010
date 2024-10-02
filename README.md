@@ -4,11 +4,11 @@ Name: JehadMHamad
 
 assignment number:Lab 4 project 1
 
-what is the assignment doing: 
+what is the assignment doing:                                                                                                             
 This project is implementing one of the most popular games of chance is a dice game known as "craps."
 
 how to build your program:                                                                                                                
-You only need two core functions to build this program
+You only need two core functions to build this program                                                                                    
 die(): This function will use the random number generator to simulate rolling two dice, returning their combined sum.
 playGame(): This function will implement the rules of craps using loops and conditional statements. It will repeatedly call die() to get the result of dice rolls and determine whether the player has won or lost based on the rules.
 In addition to these functions, you’ll need to manage variables like credits, wager, and roll. Make sure to define credits as a global variable so that its value persists across multiple rounds of the game.
