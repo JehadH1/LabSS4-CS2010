@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <time.h>
 using namespace std;
+int cred = 100; 
+
 static int die() {
 	int d1 = rand() % 6 + 1;
 	int d2 = rand() % 6 + 1;
@@ -12,8 +14,8 @@ static int die() {
 }
 
 
-static void playGame(int* credit) {
-	int cred = *credit;
+static void playGame() {
+	
 	int wager = 0;
 	int plyPoint = 0;
 	int turns = 1;
@@ -33,15 +35,15 @@ static void playGame(int* credit) {
 		cout << endl;
 		int num = die();
 		if (((num == 7) || (num == 11)) && (turns == 1)) {
-			*credit += wager;
-			cred = *credit;
+			cred += wager;
+			
 			cout << "\nplayer wins \n\nyou won " << wager << " Your new balance is " << cred << " credits";
 			state = false;
 		}
 		else if (((num == 2) || (num == 3) || (num == 12)) && (turns == 1)) {
-			*credit -= wager;
-			cred = *credit;
-			if (*credit == 0) {
+			cred -= wager;
+			
+			if (cred == 0) {
 				cout << "\nyou lost " << wager << " credits You are out of credits - game over";
 
 			}
@@ -58,9 +60,9 @@ static void playGame(int* credit) {
 				newnum = die();
 
 				if (newnum == 7) {
-					*credit -= wager;
-					cred = *credit;
-					if (*credit == 0) {
+					cred -= wager;
+					
+					if (cred == 0) {
 						cout << "\nyou lost " << wager << " credits You are out of credits - game over";
 
 					}
@@ -70,8 +72,8 @@ static void playGame(int* credit) {
 					state = false;
 				}
 				else if (newnum == plyPoint) {
-					*credit += wager;
-					cred = *credit;
+					cred += wager;
+					
 					cout << "player wins\n\nyou won " << wager << " Your new balance is " << cred << " credits";
 					state = false;
 				}
@@ -88,10 +90,9 @@ int main() {
 	srand(time(NULL));
 	char ans;
 	bool done = false;
-	int credit = 100;
 	while (!done) {
-		playGame(&credit);
-		if (credit == 0) {
+		playGame();
+		if (cred == 0) {
 			break;
 		}
 		cout << " Play again (y/n) ? ";
