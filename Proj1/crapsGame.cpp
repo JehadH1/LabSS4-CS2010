@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <time.h>
 using namespace std;
-int die() {
+static int die() {
 	int d1 = rand() % 6 + 1;
 	int d2 = rand() % 6 + 1;
 	int sum = d1 + d2;
