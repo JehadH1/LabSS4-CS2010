@@ -21,9 +21,7 @@ static void playGame() {
 	
 	bool playing = true;
 
-	if (credits <= 0) {
-		credits = 100;
-	}
+
 	cout << "You have " << credits << " credits ";
 	cout << "How much do you wager ";
 
