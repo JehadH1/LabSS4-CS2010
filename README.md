@@ -9,7 +9,7 @@ This project is implementing one of the most popular games of chance is a dice g
 
 how to build your program:                                                                                                                
 You only need two core functions to build this program                                                                                    
-die(): This function will use the random number generator to simulate rolling two dice, returning their combined sum.
+die(): This function will use the random number generator to simulate rolling two dice, returning their combined sum.                     
 playGame(): This function will implement the rules of craps using loops and conditional statements. It will repeatedly call die() to get the result of dice rolls and determine whether the player has won or lost based on the rules.
 In addition to these functions, you’ll need to manage variables like credits, wager, and roll. Make sure to define credits as a global variable so that its value persists across multiple rounds of the game.
 Use a do-while loop to ensure the player makes a valid wager. If the wager is greater than their available credits or a negative amount, prompt them to try again.
