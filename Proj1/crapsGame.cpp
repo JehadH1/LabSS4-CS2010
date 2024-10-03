@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
+#include <string>
 using namespace std;
 int credits = 100; 
 
@@ -17,21 +18,28 @@ static int die() {
 static void playGame() {
 	
 	int wager = 0;
+	float enteredWager = 0;
 	int playPoint = 0;
 	
 	bool playing = true;
 
 
-	cout << "You have " << credits << " credits ";
-	cout << "How much do you wager ";
+	cout << "You have " << credits << " credits \n";
+	cout << "If you enter a number with a decimal i will round your wager for you \n";
+
+	cout << "How much do you wager: ";
 
 
-	do {
-		cin >> wager;
+	while (wager <= 0 || wager > credits) {
+		cin >> enteredWager;
+		wager = static_cast<int>(enteredWager);
 		if (wager <= 0 || wager > credits) {
+			cin.clear();
+			cin.ignore();
 			cout << "Invalid wager. Try again please: ";
 		}
-	} while (wager <= 0 || wager > credits);
+	}
+	
 
 	while (playing) {
 		cout << endl;
@@ -91,15 +99,32 @@ static void playGame() {
 
 int main() {
 	srand(time(NULL));
-	char ans;
+	string ans = "n";
 	bool done = false;
 	while (!done) {
 		playGame();
-		
+
+		if (credits == 0) {
+			break;
+		}
 		cout << " Play again (y/n) ? ";
-		cin >> ans;
-		if (ans == 'n' || ans == 'N') done = true;
-		else done = false;
+
+		
+		while (ans != "n" || ans != "N" || ans != "y" || ans != "y") {
+			cin >> ans;
+			if (ans == "n" || ans == "N") {
+				done = true;
+				break;
+			}
+			else if (ans == "y" || ans == "y") {
+				done = false;
+				break;
+			}
+			else
+
+				cout << "enter either a y or n : ";
+		}
+
 		cout << endl;
 	}
 	return 0;
