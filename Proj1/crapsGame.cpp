@@ -19,23 +19,18 @@ static int die() {
 static void playGame() {
 	//function for playGame, will implement the rules for craps
 	int wager = 0;
-	float enteredWager = 0;
 	int playPoint = 0;
 	bool playing = true;
 
 
 	cout << "You have " << credits << " credits \n";
-	cout << "If you enter a number with a decimal i will round your wager for you \n";
 	cout << "How much do you wager: ";
 
 	//wager part of my game, will chech if you gave it the right values if not will continue to loop till you do.
 	//if you give it a double, will cast it as a int and let you play.
 	while (wager <= 0 || wager > credits) {
-		cin >> enteredWager;
-		wager = static_cast<int>(enteredWager);
+		cin >> wager;
 		if (wager <= 0 || wager > credits) {
-			cin.clear();
-			cin.ignore();
 			cout << "Invalid wager. Try again please: ";
 		}
 	}
