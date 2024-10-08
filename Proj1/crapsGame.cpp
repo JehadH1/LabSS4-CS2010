@@ -31,6 +31,9 @@ static void playGame() {
 	while (wager <= 0 || wager > credits) {
 		cin >> wager;
 		if (wager <= 0 || wager > credits) {
+			//if you eneter a letter will clear and ignore your input
+			cin.clear();
+			cin.ignore();
 			cout << "Invalid wager. Try again please: ";
 		}
 	}
