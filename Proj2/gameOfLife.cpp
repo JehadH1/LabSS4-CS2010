@@ -13,6 +13,7 @@ static MATRIX makeMat() {
     cout << "your coloumn is: ";
     cin >> col;
     MATRIX m(row, VEC(col, 0));
+    cout << endl;
     return m;
 }
 //place cells
@@ -25,6 +26,8 @@ static void placeCells(MATRIX &curr) {
         cin >> col;
         curr[row][col] = 1;
     }
+    cout << endl;
+
 }
 //printing my matrix
 static void printMat(MATRIX curr) {
