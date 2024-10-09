@@ -16,6 +16,18 @@ static MATRIX makeMat() {
     cout << endl;
     return m;
 }
+//printing my matrix
+static void printMat(MATRIX curr) {
+
+    for (auto y = 0; y < curr[0].size(); y++) {
+        for (auto x = 0; x < curr[y].size(); x++) {
+            cout << curr[y][x];
+
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
 //place cells
 static void placeCells(MATRIX &curr) {
     cout << "where do you want to place your cells: ";
@@ -27,19 +39,8 @@ static void placeCells(MATRIX &curr) {
         curr[row][col] = 1;
     }
     cout << endl;
-
 }
-//printing my matrix
-static void printMat(MATRIX curr) {
 
-   for (auto y = 0; y < curr[0].size(); y++) {
-       for (auto x =0; x < curr[y].size(); x++) {
-           cout << curr[y][x];
-
-       }
-       cout << endl;
-    }
-}
 
 
 int main()
