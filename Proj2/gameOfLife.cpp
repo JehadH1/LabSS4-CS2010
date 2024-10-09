@@ -18,8 +18,8 @@ static MATRIX makeMat() {
 }
 //printing my matrix
 static void printMat(MATRIX currentMat) {
-    for (auto y = 2; y < currentMat[0].size(); y++) {
-        for (auto x = 2; x < currentMat[y].size(); x++) {
+    for (auto y = 1; y < currentMat[0].size()-1; y++) {
+        for (auto x = 1; x < currentMat[y].size()-1; x++) {
             cout << currentMat[y][x];
         }
         cout << endl;
@@ -28,61 +28,60 @@ static void printMat(MATRIX currentMat) {
 }
 //place cells
 static void placeCells(MATRIX &currentMat) {
-    cout << "where do you want to place your cells: ";
+    cout << "how mant cells do you want to place: ";
     int col, row, cell = 0;
     cin >> cell;
     for (auto i = 0; i < cell; i++) {
         cin >> row;
         cin >> col;
-        currentMat[row+2][col+2] = 1;
+        currentMat[row+1][col+1] = 1;
     }
     cout << endl;
 }
 //rules
 static void rules(MATRIX& copyMat, MATRIX& currentMat) {
  
-    for (auto y = 2; y < currentMat[0].size(); y++) {
-        cout << "im y\n";
-        int i = 0;
-        for (auto x = 2; x < currentMat[y].size(); x++) {
-            cout << "im x \n";
+    for (auto y = 1; y < currentMat[0].size()-1; y++) {
+        for (auto x = 1; x < currentMat[y].size()-1; x++) {
+            int neighbours = 0;
             if (currentMat[y - 1][x] == 1)      //checks up
-                i += 1;
+                neighbours += 1;
 
             if (currentMat[y + 1][x] == 1)      //checks down
-                i += 1;
+                neighbours += 1;
 
             if (currentMat[y][x - 1] == 1)        // checks left
-                i += 1;
+                neighbours += 1;
 
             if (currentMat[y][x + 1] == 1)        //checks right
-                i += 1;
+                neighbours += 1;
 
             if (currentMat[y - 1][x - 1] == 1)    //checks left upper corner
-                i += 1;
+                neighbours += 1;
 
             if (currentMat[y - 1][x + 1] == 1)  //checks right upper corner
-                i += 1;
+                neighbours += 1;
 
             if (currentMat[y + 1][x - 1] == 1)  //checks left lower corner
-                i += 1;
+                neighbours += 1;
 
             if (currentMat[y + 1][x + 1] == 1)  //checks right lower corner
-                i += 1;
+                neighbours += 1;
+
 
             if (currentMat[y][x] == 1) {
-                if (i < 2) {
+                if (neighbours < 2) {
                     copyMat[y][x] = 0;
                 }
-                else if ((i == 2) || (i == 3)) {
+                else if (neighbours == 2 || neighbours == 3) {
                     copyMat[y][x] = 1;
                 }
-                else {
+                else if (neighbours > 3) {
                     copyMat[y][x] = 0;
                 }
             }
             else if (currentMat[y][x] == 0) {
-                if (i == 3) {
+                if (neighbours == 3) {
                     copyMat[y][x] = 1;
                 }
                 else {
@@ -94,6 +93,17 @@ static void rules(MATRIX& copyMat, MATRIX& currentMat) {
     }
     currentMat = copyMat;
 }
+//genertations
+static void genertions(MATRIX & copyMat, MATRIX &currentMat) {
+    int genertions = 1;
+    cout << "how many genertions do you want: ";
+    cin >> genertions;
+    for (auto i = 0; i < genertions; i++) {
+        rules(copyMat, currentMat);
+        printMat(currentMat);
+    }
+
+}
 
 int main()
 {
@@ -103,11 +113,7 @@ int main()
     printMat(currentMat);
 
     MATRIX copyMat = currentMat;
-    printMat(copyMat);
-    rules(copyMat, currentMat);
-    printMat(currentMat);
-
-
+    genertions(copyMat, currentMat);
 }
 
 
