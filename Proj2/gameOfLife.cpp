@@ -42,9 +42,10 @@ static void placeCells(MATRIX &currentMat) {
 static void rules(MATRIX& copyMat, MATRIX& currentMat) {
  
     for (auto y = 2; y < currentMat[0].size(); y++) {
+        cout << "im y\n";
         int i = 0;
         for (auto x = 2; x < currentMat[y].size(); x++) {
-
+            cout << "im x \n";
             if (currentMat[y - 1][x] == 1)      //checks up
                 i += 1;
 
@@ -91,6 +92,7 @@ static void rules(MATRIX& copyMat, MATRIX& currentMat) {
         }
 
     }
+    currentMat = copyMat;
 }
 
 int main()
@@ -99,8 +101,12 @@ int main()
     printMat(currentMat);
     placeCells(currentMat);
     printMat(currentMat);
+
     MATRIX copyMat = currentMat;
-    //rules(copyMat, currentMat);
+    printMat(copyMat);
+    rules(copyMat, currentMat);
+    printMat(currentMat);
+
 
 }
 
