@@ -5,6 +5,43 @@
 using namespace std;
 int credits = 100;
 
+static int die();
+static void playGame();
+int main() {
+	//My main which will call my playGame function
+	srand(time(NULL));
+	string ans = "n";
+	bool done = false;
+	//this while loop is used to see of you are done playing or not;
+	while (!done) {
+		playGame();
+		//this part of the loop is used to break out of the game if you have zero credits as you cant play again
+		if (credits == 0) {
+			break;
+		}
+
+		cout << " Play again (y/n) ? ";
+		//while loop here will loop till you give it a string thats a y or n.
+		//if you dont it will keep you here.
+		while (ans != "n" || ans != "N" || ans != "y" || ans != "y") {
+			cin >> ans;
+			if (ans == "n" || ans == "N") {
+				done = true;
+				break;
+			}
+			else if (ans == "y" || ans == "y") {
+				done = false;
+				break;
+			}
+			else
+				cout << "enter either a y or n : ";
+		}
+
+		cout << endl;
+	}
+	return 0;
+}
+
 static int die() {
 	//function for dice roll that will roll two dice and return thier some
 	int d1 = rand() % 6 + 1;
@@ -88,39 +125,4 @@ static void playGame() {
 			}
 		}
 	}
-}
-
-int main() {
-	//My main which will call my playGame function
-	srand(time(NULL));
-	string ans = "n";
-	bool done = false;
-	//this while loop is used to see of you are done playing or not;
-	while (!done) {
-		playGame();
-		//this part of the loop is used to break out of the game if you have zero credits as you cant play again
-		if (credits == 0) {
-			break;
-		}
-
-		cout << " Play again (y/n) ? ";
-		//while loop here will loop till you give it a string thats a y or n.
-		//if you dont it will keep you here.
-		while (ans != "n" || ans != "N" || ans != "y" || ans != "y") {
-			cin >> ans;
-			if (ans == "n" || ans == "N") {
-				done = true;
-				break;
-			}
-			else if (ans == "y" || ans == "y") {
-				done = false;
-				break;
-			}
-			else
-				cout << "enter either a y or n : ";
-		}
-
-		cout << endl;
-	}
-	return 0;
 }
