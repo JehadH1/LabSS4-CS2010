@@ -4,6 +4,24 @@ using namespace std;
 
 using VEC = vector<int>;
 using MATRIX = vector<VEC>;
+
+static MATRIX makeMat();
+static void printMat(MATRIX currentMat);
+static void placeCells(MATRIX& currentMat);
+static void rules(MATRIX& copyMat, MATRIX& currentMat);
+static void genertions(MATRIX& copyMat, MATRIX& currentMat);
+
+int main()
+{
+	MATRIX currentMat = makeMat();
+	printMat(currentMat);
+	placeCells(currentMat);
+	printMat(currentMat);
+
+	MATRIX copyMat = currentMat;
+	genertions(copyMat, currentMat);
+}
+
 //make a matrix
 static MATRIX makeMat() {
 	int row, col = 0;
@@ -99,15 +117,4 @@ static void genertions(MATRIX& copyMat, MATRIX& currentMat) {
 		rules(copyMat, currentMat);
 		printMat(currentMat);
 	}
-}
-
-int main()
-{
-	MATRIX currentMat = makeMat();
-	printMat(currentMat);
-	placeCells(currentMat);
-	printMat(currentMat);
-
-	MATRIX copyMat = currentMat;
-	genertions(copyMat, currentMat);
 }
