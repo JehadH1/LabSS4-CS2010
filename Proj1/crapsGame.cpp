@@ -1,10 +1,9 @@
-
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
 #include <string>
 using namespace std;
-int credits = 100; 
+int credits = 100;
 
 static int die() {
 	//function for dice roll that will roll two dice and return thier some
@@ -15,13 +14,11 @@ static int die() {
 	return sum;
 }
 
-
 static void playGame() {
 	//function for playGame, will implement the rules for craps
 	int wager = 0;
 	int playPoint = 0;
 	bool playing = true;
-
 
 	cout << "You have " << credits << " credits \n";
 	cout << "How much do you wager: ";
@@ -37,7 +34,7 @@ static void playGame() {
 			cout << "Invalid wager. Try again please: ";
 		}
 	}
-	
+
 	//main body for the game, while loop continues as long as you play
 	//the if and else if part are used to check for the instant wins
 	while (playing) {
@@ -46,7 +43,7 @@ static void playGame() {
 
 		if ((roll == 7) || (roll == 11)) {
 			credits += wager;
-			
+
 			cout << "\nplayer wins \n\nyou won " << wager << " Your new balance is " << credits << " credits";
 			playing = false;
 		}
@@ -55,7 +52,6 @@ static void playGame() {
 			//checks if you lost all your credits
 			if (credits == 0) {
 				cout << "\nyou lost " << wager << " credits You are out of credits - game over";
-
 			}
 			else {
 				cout << "player loses\n\nyou lost " << wager << " Your new balance is " << credits << " credits";
@@ -77,7 +73,6 @@ static void playGame() {
 					//checks if you lost all your credits
 					if (credits == 0) {
 						cout << "\nyou lost " << wager << " credits You are out of credits - game over";
-
 					}
 					else {
 						cout << "player loses\n\nyou lost " << wager << " Your new balance is " << credits << " credits";
@@ -86,18 +81,14 @@ static void playGame() {
 				}
 				else if (newRoll == playPoint) {
 					credits += wager;
-					
+
 					cout << "player wins\n\nyou won " << wager << " Your new balance is " << credits << " credits";
 					playing = false;
 				}
-
 			}
-
 		}
 	}
 }
-
-
 
 int main() {
 	//My main which will call my playGame function
