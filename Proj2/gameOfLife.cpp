@@ -10,7 +10,6 @@ static void printMat(MATRIX currentMat);
 static void placeCells(MATRIX& currentMat);
 static void rules(MATRIX& copyMat, MATRIX& currentMat);
 static void genertions(MATRIX& copyMat, MATRIX& currentMat);
-
 int main()
 {
 	MATRIX currentMat = makeMat();
@@ -113,6 +112,7 @@ static void genertions(MATRIX& copyMat, MATRIX& currentMat) {
 	int genertions = 1;
 	cout << "how many genertions do you want: ";
 	cin >> genertions;
+	cout << endl;
 	for (auto i = 0; i < genertions; i++) {
 		rules(copyMat, currentMat);
 		printMat(currentMat);
