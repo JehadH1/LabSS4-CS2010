@@ -1,28 +1,11 @@
 #include<vector>
 #include <iostream>
+#include "gameOfLife.h"
 using namespace std;
 
-using VEC = vector<int>;
-using MATRIX = vector<VEC>;
-
-static MATRIX makeMat();
-static void printMat(MATRIX currentMat);
-static void placeCells(MATRIX& currentMat);
-static void rules(MATRIX& copyMat, MATRIX& currentMat);
-static void genertions(MATRIX& copyMat, MATRIX& currentMat);
-int main()
-{
-	MATRIX currentMat = makeMat();
-	printMat(currentMat);
-	placeCells(currentMat);
-	printMat(currentMat);
-
-	MATRIX copyMat = currentMat;
-	genertions(copyMat, currentMat);
-}
 
 //make a matrix
-static MATRIX makeMat() {
+ MATRIX makeMat() {
 	int row, col = 0;
 	cout << "how big do your want your matrix to be? \n";
 	cout << "your row is: ";
@@ -33,8 +16,9 @@ static MATRIX makeMat() {
 	cout << endl;
 	return currentMat;
 }
+
 //printing my matrix
-static void printMat(MATRIX currentMat) {
+ void printMat(MATRIX currentMat) {
 	for (auto y = 1; y < currentMat[0].size() - 1; y++) {
 		for (auto x = 1; x < currentMat[y].size() - 1; x++) {
 			cout << currentMat[y][x];
@@ -43,8 +27,9 @@ static void printMat(MATRIX currentMat) {
 	}
 	cout << endl;
 }
+
 //place cells
-static void placeCells(MATRIX& currentMat) {
+ void placeCells(MATRIX& currentMat) {
 	cout << "how mant cells do you want to place: ";
 	int col, row, cell = 0;
 	cin >> cell;
@@ -55,8 +40,9 @@ static void placeCells(MATRIX& currentMat) {
 	}
 	cout << endl;
 }
+
 //rules
-static void rules(MATRIX& copyMat, MATRIX& currentMat) {
+ void rules(MATRIX& copyMat, MATRIX& currentMat) {
 	for (auto y = 1; y < currentMat[0].size() - 1; y++) {
 		for (auto x = 1; x < currentMat[y].size() - 1; x++) {
 			int neighbours = 0;
@@ -107,8 +93,9 @@ static void rules(MATRIX& copyMat, MATRIX& currentMat) {
 	}
 	currentMat = copyMat;
 }
+
 //genertations
-static void genertions(MATRIX& copyMat, MATRIX& currentMat) {
+ void genertions(MATRIX& copyMat, MATRIX& currentMat) {
 	int genertions = 1;
 	cout << "how many genertions do you want: ";
 	cin >> genertions;
