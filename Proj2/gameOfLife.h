@@ -10,5 +10,3 @@ void printMat(MATRIX currentMat);
 void placeCells(MATRIX& currentMat);
 void rules(MATRIX& copyMat, MATRIX& currentMat);
 void genertions(MATRIX& copyMat, MATRIX& currentMat);
-
-//header file
