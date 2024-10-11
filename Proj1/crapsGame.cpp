@@ -3,18 +3,21 @@
 #include <time.h>
 #include <string>
 using namespace std;
-int credits = 100;
 
 static int die();
-static void playGame();
+static void playGame(int &credits);
+static void winner(int& credits, int& wager, bool& playing);
+static void loser(int& credits, int& wager, bool& playing);
+
 int main() {
+	int credits = 100;
 	//My main which will call my playGame function
 	srand(time(NULL));
 	string ans = "n";
 	bool done = false;
 	//this while loop is used to see of you are done playing or not;
 	while (!done) {
-		playGame();
+		playGame(credits);
 		//this part of the loop is used to break out of the game if you have zero credits as you cant play again
 		if (credits == 0) {
 			break;
@@ -50,8 +53,25 @@ static int die() {
 	cout << "player rolled " << d1 << " + " << d2 << " = " << sum << endl;
 	return sum;
 }
+static void winner(int& credits, int& wager, bool& playing) {
+	credits += wager;
 
-static void playGame() {
+	cout << "player wins\n\nyou won " << wager << " Your new balance is " << credits << " credits";
+	playing = false;
+}
+static void loser(int& credits, int& wager, bool& playing) {
+	credits -= wager;
+	//checks if you lost all your credits
+	if (credits == 0) {
+		cout << "\nyou lost " << wager << " credits You are out of credits - game over";
+	}
+	else {
+		cout << "player loses\n\nyou lost " << wager << " Your new balance is " << credits << " credits";
+	}
+	playing = false;
+}
+
+static void playGame(int &credits) {
 	//function for playGame, will implement the rules for craps
 	int wager = 0;
 	int playPoint = 0;
@@ -79,21 +99,10 @@ static void playGame() {
 		int roll = die();
 
 		if ((roll == 7) || (roll == 11)) {
-			credits += wager;
-
-			cout << "\nplayer wins \n\nyou won " << wager << " Your new balance is " << credits << " credits";
-			playing = false;
+			winner(credits, wager, playing);
 		}
 		else if ((roll == 2) || (roll == 3) || (roll == 12)) {
-			credits -= wager;
-			//checks if you lost all your credits
-			if (credits == 0) {
-				cout << "\nyou lost " << wager << " credits You are out of credits - game over";
-			}
-			else {
-				cout << "player loses\n\nyou lost " << wager << " Your new balance is " << credits << " credits";
-			}
-			playing = false;
+			loser(credits, wager, playing);
 		}
 		//This else if used to make you sum the play point if you didnt instantly win.
 		else {
@@ -106,23 +115,13 @@ static void playGame() {
 				newRoll = die();
 
 				if (newRoll == 7) {
-					credits -= wager;
-					//checks if you lost all your credits
-					if (credits == 0) {
-						cout << "\nyou lost " << wager << " credits You are out of credits - game over";
-					}
-					else {
-						cout << "player loses\n\nyou lost " << wager << " Your new balance is " << credits << " credits";
-					}
-					playing = false;
+					loser(credits, wager, playing);
 				}
 				else if (newRoll == playPoint) {
-					credits += wager;
-
-					cout << "player wins\n\nyou won " << wager << " Your new balance is " << credits << " credits";
-					playing = false;
+					winner(credits, wager, playing);
 				}
 			}
 		}
 	}
 }
+
