@@ -3,7 +3,6 @@
 #include "gameOfLife.h"
 using namespace std;
 
-
 //make a matrix
  MATRIX makeMat() {
 	int row, col = 0;
