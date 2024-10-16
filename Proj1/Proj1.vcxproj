@@ -129,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="crapsGame.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="readMe" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
