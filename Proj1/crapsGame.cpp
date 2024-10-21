@@ -21,7 +21,6 @@ int main() {
 		if (credits == 0) {
 			break;
 		}
-
 		cout << " Play again (y/n) ? ";
 		while (ans != "n" || ans != "N" || ans != "y" || ans != "y") {
 			cin >> ans;
